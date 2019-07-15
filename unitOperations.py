@@ -12,10 +12,10 @@ import uuid
 ##########################################
 # addes a unit to the unit_list array
 ########################################## 
-def add_units(unit_list, name):
+def add_units(unit_list, name, faction='player', height=1, direction='S', speed=1, state='alive'):
     unit_image = load_image(name)
     unit_instanceID = uuid.uuid4().hex
-    new_unit = unitObject(unit_instanceID, name, unit_image, 1, 1, 'alive')
+    new_unit = unitObject(unit_instanceID, name, faction, unit_image, height,  direction, speed, 'alive')
     unit_list.append(new_unit)
     return unit_list
 
@@ -23,9 +23,8 @@ def add_units(unit_list, name):
 # deletes a unit from the unit list by unit_instanceID
 ########################################## 
 def delete_units(unit_list, unit_instanceID):
-      
     for unit in unit_list:
         if unit.instanceID == unit_instanceID:
             unit.state = 'dead'   
-            logging.info('Unit %s dead', unit_instanceID)\
+            logging.info('Unit %s dead', unit_instanceID)
     return unit_list

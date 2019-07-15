@@ -14,15 +14,14 @@ from configReader import *
 from logger import *
 from units import *
 from assetLoad import *
-from unitOperations import *
+from event import *
 
-initConfig()
+initConfig() #read startup options from config file
 log_file=readConfig('logging', 'log_file', 'string')
 log_level=readConfig('logging', 'log_level', 'string')
 logging_mode=readConfig('logging', 'logging_mode', 'string')
-initLogging(log_file,log_level,logging_mode)
-initStatus = pygame.init()
-
+initLogging(log_file,log_level,logging_mode) #start the logger
+initStatus = pygame.init() #start pygame modules
 logging.info('Game Starting with %i moduals Succeding and %i Failures', initStatus[0], initStatus[1])
 
 display_width = readConfig('graphics', 'display_width', 'int')
@@ -40,18 +39,6 @@ game_display.blit(background, (0, 0))
 #Setup global arrays
 unit_list = []
 
-def event_handler(unit_list):
-    for event in pygame.event.get():
-        logging.debug(event)        
-        if event.type == QUIT:
-            pygame.quit()
-            quit()
-        elif event.type == KEYDOWN and (event.key == K_ESCAPE):
-            print 'need to implement a menu'
-        elif event.type == KEYDOWN and (event.key == K_f):
-            unit_list = add_units(unit_list, 'unit')
-        elif event.type == KEYDOWN and (event.key == K_d):
-            unit_list = delete_units(unit_list, unit_list[0].instanceID)
             
 def render_units(unit_list):    
     for unit in unit_list:
