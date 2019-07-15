@@ -20,4 +20,4 @@ def initLogging(log_file, log_level, logging_mode):
                             level=log_level)
 
     logging.info("_______________________NEW RUN_______________________")
-    logging.info("Logger Initalized at "+log_level)
+    logging.info("Logger Initalized at %s", log_level)
