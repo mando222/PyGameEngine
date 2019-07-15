@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-class GameObject:
+class unitObject:
     def __init__(self, image, height, speed):
         self.speed = speed
         self.image = image
@@ -9,3 +9,7 @@ class GameObject:
         self.pos = self.pos.move(0, self.speed)
         if self.pos.right > 600:
             self.pos.left = 0
+
+class backgroundObject:
+    def __init__(self, image):
+        self.image = image

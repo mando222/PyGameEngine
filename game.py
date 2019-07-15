@@ -14,6 +14,7 @@ from configReader import *
 from logger import *
 from units import *
 from assetLoad import *
+from unitObjects import *
 
 initConfig()
 log_file=readConfig('logging', 'log_file', 'string')
@@ -32,19 +33,14 @@ game_display = pygame.display.set_mode((display_width, display_height))
 pygame.display.set_caption('PyGameEngine')
 logging.info('Game Has Started Without Errors')
 
-#Loading assets
-unit1 = load_image('unit')
+#Setup background
 background = load_image('whitebackground')
 game_display.blit(background, (0, 0))
 
+#Setup global arrays
+unit_list = []
 
-first_unit = GameObject(unit1, 1, 1)
-second_unit = GameObject(unit1, 10, 1)
-
-
-unit_list = [first_unit,second_unit]
-
-def event_handler():
+def event_handler(unit_list):
     for event in pygame.event.get():
         logging.debug(event)        
         if event.type == QUIT:
@@ -53,9 +49,9 @@ def event_handler():
         elif event.type == KEYDOWN and (event.key == K_ESCAPE):
             print 'escape'
         elif event.type == KEYDOWN and (event.key == K_f):
-            print 'f'
-
-def render_units():
+            unit_list = add_units(unit_list, 'unit')
+            
+def render_units(unit_list):    
     for unit in unit_list:
         game_display.blit(background, unit.pos, unit.pos)
     for unit in unit_list:
@@ -66,5 +62,5 @@ def render_units():
     
 while True:
     logging.debug("tick")
-    event_handler()
-    render_units()
+    event_handler(unit_list)
+    render_units(unit_list)
