@@ -54,6 +54,7 @@ def readConfig(sectionName, tag, typeVal):
         configValue = config.getboolien(sectionName, tag)
     elif typeVal== 'float':
         configValue = config.getfloat(sectionName, tag)
+    logging.debug("config values read %s", configValue)
     return configValue
 
 
@@ -66,5 +67,6 @@ def readConfig(sectionName, tag, typeVal):
 def changeSetting(sectionName, tag, value):
     fileName = 'config.cfg'
     config.set(sectionName, tag, value)
+    logging.debug("config values read %s, %s, %s", sectionName, tag, value)
     with open(fileName, 'wb') as configfile:
         config.write(configfile)
