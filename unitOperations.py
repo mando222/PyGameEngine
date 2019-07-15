@@ -25,10 +25,7 @@ def add_units(unit_list, name):
 def delete_units(unit_list, unit_instanceID):
       
     for unit in unit_list:
-        if unit.instanceID== unit_instanceID:
-            unit.state = 'dead'
-#            unit_list.remove(unit)
-    print unit.name
-    print unit.instanceID
-    print unit.state
+        if unit.instanceID == unit_instanceID:
+            unit.state = 'dead'   
+            logging.info('Unit %s dead', unit_instanceID)\
     return unit_list

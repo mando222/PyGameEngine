@@ -14,7 +14,7 @@ from configReader import *
 from logger import *
 from units import *
 from assetLoad import *
-from unitObjects import *
+from unitOperations import *
 
 initConfig()
 log_file=readConfig('logging', 'log_file', 'string')
