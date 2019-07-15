@@ -6,20 +6,29 @@ from logger import *
 from units import *
 from assetLoad import *
 import numpy as np
+import uuid
 
 
 ##########################################
-# Builds an array of all active units
+# addes a unit to the unit_list array
 ########################################## 
 def add_units(unit_list, name):
     unit_image = load_image(name)
-    new_unit = unitObject(unit_image, 1, 1)
+    unit_instanceID = uuid.uuid4().hex
+    new_unit = unitObject(unit_instanceID, name, unit_image, 1, 1, 'alive')
     unit_list.append(new_unit)
     return unit_list
 
-def delete_units(unit_list):
-    unit1 = load_image('unit')
-    first_unit = unitObject(unit1, 1, 1)
-    second_unit = unitObject(unit1, 10, 1)
-    unit_list = [first_unit,second_unit]
+##########################################
+# deletes a unit from the unit list by unit_instanceID
+########################################## 
+def delete_units(unit_list, unit_instanceID):
+      
+    for unit in unit_list:
+        if unit.instanceID== unit_instanceID:
+            unit.state = 'dead'
+#            unit_list.remove(unit)
+    print unit.name
+    print unit.instanceID
+    print unit.state
     return unit_list

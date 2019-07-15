@@ -1,9 +1,12 @@
 #!/usr/bin/python
 
 class unitObject:
-    def __init__(self, image, height, speed):
+    def __init__(self, instanceID, name, image, height, speed, state):
+        self.instanceID = instanceID
+        self.name = name
         self.speed = speed
         self.image = image
+        self.state = state
         self.pos = image.get_rect().move(0, height)
     def move(self):
         self.pos = self.pos.move(0, self.speed)

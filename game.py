@@ -47,16 +47,19 @@ def event_handler(unit_list):
             pygame.quit()
             quit()
         elif event.type == KEYDOWN and (event.key == K_ESCAPE):
-            print 'escape'
+            print 'need to implement a menu'
         elif event.type == KEYDOWN and (event.key == K_f):
             unit_list = add_units(unit_list, 'unit')
+        elif event.type == KEYDOWN and (event.key == K_d):
+            unit_list = delete_units(unit_list, unit_list[0].instanceID)
             
 def render_units(unit_list):    
     for unit in unit_list:
         game_display.blit(background, unit.pos, unit.pos)
     for unit in unit_list:
-        unit.move()
-        game_display.blit(unit.image, unit.pos)
+        if unit.state== 'alive':
+            unit.move()
+            game_display.blit(unit.image, unit.pos)
     pygame.display.update()
     pygame.time.delay(100)
     
