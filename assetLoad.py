@@ -3,17 +3,22 @@
 import os, sys
 import pygame
 from pygame.locals import *
+from logger import *
+from pathlib2 import Path
 
 ##########################################
 # Loads an bmp image from a file
 # name is the name of the file - extention
 ########################################## 
 def load_image(name, colorkey=None):
-    fullname = os.path.join('assets', name+'.bmp')
+    filetypes=['.png','.bmp','.jpg']
+    for ext in filetypes:
+        if Path(os.path.join('assets', name+ext)).is_file():
+            fullname = os.path.join('assets', name+ext)
     try:
         image = pygame.image.load(fullname)
     except pygame.error as message:
-        print('Cannot load image:', name)
+        logging.info('Cannot load image: %s', name)
         raise SystemExit(message)
     image = image.convert()
     #set colorkey

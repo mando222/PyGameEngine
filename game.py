@@ -31,6 +31,7 @@ logging.info('Screen resolution set to %i x %i', display_width, display_height)
 game_display = pygame.display.set_mode((display_width, display_height))
 pygame.display.set_caption('PyGameEngine')
 logging.info('Game Has Started Without Errors')
+clock = pygame.time.Clock()
 
 #Setup background
 background = load_image('whitebackground')
@@ -38,8 +39,8 @@ game_display.blit(background, (0, 0))
 
 #Setup global arrays
 unit_list = []
-
-            
+running = True
+   
 def render_units(unit_list):    
     for unit in unit_list:
         game_display.blit(background, unit.pos, unit.pos)
@@ -50,7 +51,8 @@ def render_units(unit_list):
     pygame.display.update()
     pygame.time.delay(100)
     
-while True:
+while running:
     logging.debug("tick")
     event_handler(unit_list)
     render_units(unit_list)
+    clock.tick(144)
