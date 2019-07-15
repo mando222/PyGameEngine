@@ -12,7 +12,7 @@ import uuid
 ##########################################
 # addes a unit to the unit_list array
 ########################################## 
-def add_units(unit_list, name, faction='player', height=1, direction='S', speed=1, state='alive'):
+def add_units(unit_list, name, faction='default', height=1, direction='S', speed=1, state='alive'):
     unit_image = load_image(name)
     unit_instanceID = uuid.uuid4().hex
     new_unit = unitObject(unit_instanceID, name, faction, unit_image, height,  direction, speed, 'alive')
