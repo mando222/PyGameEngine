@@ -54,7 +54,6 @@ def event_handler():
             print 'escape'
         elif event.type == KEYDOWN and (event.key == K_f):
             print 'f'
-        render_units()
 
 def render_units():
     for unit in unit_list:
@@ -68,5 +67,4 @@ def render_units():
 while True:
     logging.debug("tick")
     event_handler()
-    
-    pygame.display.update()
+    render_units()
