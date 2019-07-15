@@ -1,5 +1,12 @@
 #!/usr/bin/python
 
+########################################
+# This is a first crack at a python game.
+# The idea is to have a full RTS style 
+# game by the end of my work.
+# Author mando222 7/14/2019
+# python version 2.9
+########################################
 import pygame
 from pygame.locals import *
 from configReader import *
