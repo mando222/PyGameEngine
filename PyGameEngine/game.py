@@ -10,10 +10,10 @@
 ########################################
 import pygame
 from pygame.locals import *
-from configReader import *
+from config_reader import *
 from logger import *
 from units import *
-from assetLoad import *
+from asset_load import *
 from event import *
 
 initConfig() #read startup options from config file
