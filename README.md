@@ -10,3 +10,9 @@ To install poetry run the following command
 Next add it to your path ```export PATH="$HOME/.poetry/bin:$PATH"``` on a mac
 
 Once you have installed poetry run the ``` poetry install ```
+
+To run the game engine use the following commands
+```
+cd PyGameEngine
+python game.py
+```
