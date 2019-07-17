@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 
 class unitObject:
     def __init__(self, instanceID, name, faction, image, height, direction, speed, state):

@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 
 # Most of this code was not mine but was from
 # https://www.programcreek.com/python/example/136/logging.basicConfig
