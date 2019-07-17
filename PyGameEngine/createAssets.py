@@ -24,7 +24,27 @@ def create_unit(faction, name):
         faction_file.set(name, 'id', unit_id)
         with open(fileName, 'wb') as file:
             faction_file.write(file)
-        logging.info("Unit %s Created", name)
+        logging.info("Unit %s Created", name)  
+
+def edit_unit(action, faction, name, tag, value='none'):
+    fileName = faction+'.fac'
+    HERE = Path(__file__).parent.resolve()
+    PATH = HERE / 'factions'/ fileName
+    faction_file = ConfigParser.RawConfigParser()
+    faction_file.read(fileName)
+    if faction_file.get(name, name).exists(): 
+        if action == 'remove':
+            config.remove_option(name, tag)
+            logging.info("removed unit %s tag %s", name, tag)
+        elif action == 'add':
+            faction_file.set(name, tag, value)
+            logging.info("added unit %s tag %s", name, tag)
+        elif action == 'edit':
+            faction_file.set(name, tag, value)
+            logging.info("edited unit %s tag %s", name, tag)    
+    else:
+        logging.info("error unit %s doesn't exist", name)
+        logging.info("Need to impliment error handling here")
 
 def create_faction(name):
     fileName = name+'.fac'
