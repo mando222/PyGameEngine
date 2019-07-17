@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 
+import numpy as np
+import uuid
 import pygame
 from pygame.locals import *
 from logger import *
 from units import *
 from asset_load import *
-import numpy as np
-import uuid
 
 
 ##########################################

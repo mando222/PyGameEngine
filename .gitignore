@@ -9,3 +9,4 @@ system.log
 *.log
 config.cfg
 *.pyc
+*.fac

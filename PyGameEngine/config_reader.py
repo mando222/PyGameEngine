@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import ConfigParser
-
 from logger import *
 #python2.x dependency
 from pathlib2 import Path

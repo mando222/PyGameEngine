@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 
+import pygame
 from logger import *
 from units import *
 from unit_operations import *
-import pygame
 from pygame.locals import *
 
 def event_handler(unit_list):

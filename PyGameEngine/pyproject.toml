@@ -2,7 +2,7 @@
 name = "PyGameEngine"
 version = "0.1.0"
 description = ""
-authors = ["mando222 <eric.zietlow@datastax.com>"]
+authors = ["mando222 <evemsmando@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^2.7"
