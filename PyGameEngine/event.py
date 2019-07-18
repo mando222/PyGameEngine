@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import pygame
-from logger import *
 from units import *
 from unit_operations import *
 from pygame.locals import *

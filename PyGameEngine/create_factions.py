@@ -4,7 +4,6 @@ import os
 import pygame
 import uuid
 from pygame.locals import *
-from logger import *
 from units import *
 from asset_load import *
 from unit_stat_values import *
@@ -22,18 +21,18 @@ def create_faction(faction_name):
     file_name = faction_name+'.fac'
     base_dir = Path(__file__).parent.resolve()
     file_path = base_dir / file_name
-    print (file_path)
     if file_path.exists():
         logging.info("error faction file for %s already exists", faction_name)
         logging.info("Need to impliment error handling base_dir")
     else:
         logging.info("creating faction file %s", faction_name)
         faction_file = configparser.ConfigParser()
+        faction_file.read(file_path)
         faction_file.add_section('faction_meta')
         faction_id = uuid.uuid4().hex
         faction_file.set('faction_meta', 'name', faction_name)
         faction_file.set('faction_meta', 'id', faction_id)
-        faction_file.set('faction_meta', 'points', points.FACTION_ALLOWANCE)
+        faction_file.set('faction_meta', 'points', '1000')
         with open(file_name, 'wb') as write_file:
             faction_file.write(write_file)
         logging.info("Faction %s Created", faction_name)
@@ -48,7 +47,7 @@ def create_unit(faction_name, name):
     base_dir = Path(__file__).parent.resolve()
     file_path = base_dir / file_name
     faction_file = configparser.ConfigParser()
-    faction_file.read(file_name)
+    faction_file.read(file_path)
     if file_path.exists():
         if faction_file.get(name, name).exists(): # check if the units section has been made
             logging.info("error unit %s already exists", name)
@@ -58,7 +57,7 @@ def create_unit(faction_name, name):
             faction_file.set(name, 'name', name)
             unit_id = uuid.uuid4().hex
             faction_file.set(name, 'id', unit_id)
-            faction_file.set(name, 'point_alowance', points.UNIT_ALLOWANCE)
+            faction_file.set(name, 'point_alowance', '100')
             with open(file_name, 'wb') as write_file:
                 faction_file.write(write_file)
             logging.info("Unit %s Created", name)
@@ -78,7 +77,7 @@ def edit_unit(action, faction_name, name, tag, value='none'):
     base_dir = Path(__file__).parent.resolve()
     file_path = base_dir / file_name
     faction_file = configparser.ConfigParser()
-    faction_file.read(file_name)
+    faction_file.read(file_path)
     if faction_file.get(name, name).exists():
         if action == 'remove':
             config.remove_option(name, tag)

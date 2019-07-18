@@ -3,7 +3,6 @@
 import os, sys
 import pygame
 from pygame.locals import *
-from logger import *
 from pathlib2 import Path
 
 ##########################################

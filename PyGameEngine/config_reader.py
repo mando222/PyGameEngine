@@ -30,7 +30,7 @@ def initConfig():
         config.set('logging', 'log_file', 'system.log')
         config.set('logging', 'log_level', 'INFO')
         config.set('logging', 'logging_mode', 'a')
-        with open(fileName, 'wb') as configfile:
+        with open(PATH, 'wb') as configfile:
             config.write(configfile)
 
 ##########################################
@@ -51,7 +51,8 @@ def readConfig(sectionName, tag, typeVal):
         configValue = config.getboolien(sectionName, tag)
     elif typeVal== 'float':
         configValue = config.getfloat(sectionName, tag)
-    logging.debug("config values read %s", configValue)
+    print ("config values read %s", configValue)
+    # logging.debug("config values read %s", configValue)
     return configValue
 
 
