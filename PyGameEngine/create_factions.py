@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import os
-import ConfigParser
 import pygame
 import uuid
 from pygame.locals import *
@@ -9,6 +8,10 @@ from logger import *
 from units import *
 from asset_load import *
 from unit_stat_values import *
+# python 2 dependencies
+import ConfigParser
+# python 3 dependencies
+#import configparser
 
 ##########################################
 # creates a faction file
