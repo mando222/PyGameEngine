@@ -8,25 +8,27 @@ from logger import *
 from units import *
 from asset_load import *
 from unit_stat_values import *
-# python 2 dependencies
-import ConfigParser
-# python 3 dependencies
-#import configparser
+import configparser
 
 ##########################################
 # creates a faction file
 # factino_name is the name of the faction
 ##########################################
 def create_faction(faction_name):
+#    file_name = faction_name+'.fac'
+#    file_path = os.path.join(Path(__file__).parent.resolve(), "faction", file_name)
+    
+    
     file_name = faction_name+'.fac'
-    file_path = os.path.join(Path(__file__).parent.resolve(), "faction", file_name)
+    base_dir = Path(__file__).parent.resolve()
+    file_path = base_dir / file_name
     print (file_path)
     if file_path.exists():
         logging.info("error faction file for %s already exists", faction_name)
         logging.info("Need to impliment error handling base_dir")
     else:
         logging.info("creating faction file %s", faction_name)
-        faction_file = ConfigParser.RawConfigParser()
+        faction_file = configparser.ConfigParser()
         faction_file.add_section('faction_meta')
         faction_id = uuid.uuid4().hex
         faction_file.set('faction_meta', 'name', faction_name)

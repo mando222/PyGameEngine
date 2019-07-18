@@ -1,12 +1,9 @@
 #!/usr/bin/env python3
 
 from logger import *
-#python2.x dependency
-import ConfigParser
-from pathlib2 import Path
-#python3.x dependency
-#from pathlib import Path
-#import configparser
+#import ConfigParser
+from pathlib import Path
+import configparser
 
 ##########################################
 # Initialization of the config file.  
