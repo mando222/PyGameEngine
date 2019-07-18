@@ -34,7 +34,7 @@ def create_faction(faction_name):
         faction_file.set('faction_meta', 'name', faction_name)
         faction_file.set('faction_meta', 'id', faction_id)
         faction_file.set('faction_meta', 'points', '1000')
-        with open(file_name, 'wb') as write_file:
+        with open(file_path, 'wb') as write_file:
             faction_file.write(write_file)
         # logging.info("Faction %s Created", faction_name)
 
@@ -60,7 +60,7 @@ def create_unit(faction_name, name):
             unit_id = uuid.uuid4().hex
             faction_file.set(name, 'id', unit_id)
             faction_file.set(name, 'point_alowance', '100')
-            with open(file_name, 'wb') as write_file:
+            with open(file_path, 'wb') as write_file:
                 faction_file.write(write_file)
             # logging.info("Unit %s Created", name)
     # else:
@@ -90,7 +90,7 @@ def edit_unit(action, faction_name, name, tag, value='none'):
         elif action == 'edit':
             faction_file.set(name, tag, value)
             # logging.info("edited unit %s tag %s", name, tag)
-        with open(faction_file, 'wb') as write_file:
+        with open(file_path, 'wb') as write_file:
             faction_file.write(write_file)
     # else:
     #     logging.info("error unit %s doesn't exist", name)
