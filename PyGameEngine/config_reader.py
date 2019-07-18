@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-from logger import *
 #import ConfigParser
 from pathlib import Path
 import configparser
@@ -48,7 +47,7 @@ def readConfig(sectionName, tag, typeVal):
     elif typeVal== 'string':
         configValue = config.get(sectionName, tag)
     elif typeVal== 'bool':
-        configValue = config.getboolien(sectionName, tag)
+        configValue = config.getboolean(sectionName, tag)
     elif typeVal== 'float':
         configValue = config.getfloat(sectionName, tag)
     print ("config values read %s", configValue)
