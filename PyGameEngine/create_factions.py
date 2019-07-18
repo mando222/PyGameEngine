@@ -47,7 +47,7 @@ def create_unit(faction_name, name):
     file_name = faction_name+'.fac'
     base_dir = Path(__file__).parent.resolve()
     file_path = base_dir / file_name
-    faction_file = ConfigParser.RawConfigParser()
+    faction_file = configparser.ConfigParser()
     faction_file.read(file_name)
     if file_path.exists():
         if faction_file.get(name, name).exists(): # check if the units section has been made
@@ -77,7 +77,7 @@ def edit_unit(action, faction_name, name, tag, value='none'):
     file_name = faction_name+'.fac'
     base_dir = Path(__file__).parent.resolve()
     file_path = base_dir / file_name
-    faction_file = ConfigParser.RawConfigParser()
+    faction_file = configparser.ConfigParser()
     faction_file.read(file_name)
     if faction_file.get(name, name).exists():
         if action == 'remove':

@@ -15,10 +15,10 @@ def initConfig():
     HERE = Path(__file__).parent.resolve()
     PATH = HERE / fileName
     if PATH.exists():
-        print 'config file found'
+        print ('config file found')
     else:
-        print 'creating config file'
-        config = ConfigParser.RawConfigParser()
+        print ('creating config file')
+        config = configparser.ConfigParser()
         config.add_section('graphics')
         config.add_section('sound')
         config.add_section('difficulty')
@@ -41,7 +41,7 @@ def initConfig():
 ##########################################    
 def readConfig(sectionName, tag, typeVal):
     fileName = 'config.cfg'
-    config = ConfigParser.RawConfigParser()
+    config = configparser.ConfigParser()
     config.read(fileName)
     if typeVal== 'int':
         configValue = config.getint(sectionName, tag)

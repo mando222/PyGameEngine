@@ -13,7 +13,7 @@ def event_handler(unit_list):
             pygame.quit()
             quit()
         elif event.type == KEYDOWN and (event.key == K_ESCAPE):
-            print 'need to implement a menu'
+            print ('need to implement a menu')
         elif event.type == KEYDOWN and (event.key == K_f):
             unit_list = add_units(unit_list, 'unit')
         elif event.type == KEYDOWN and (event.key == K_d):
