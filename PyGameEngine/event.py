@@ -4,6 +4,7 @@ import pygame
 from units import *
 from unit_operations import *
 from pygame.locals import *
+from logger import logging
 
 def event_handler(unit_list):
     for event in pygame.event.get():
