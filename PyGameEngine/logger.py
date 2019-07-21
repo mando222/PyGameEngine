@@ -12,16 +12,11 @@ import logging
 # loggingMode is the logging mode(a for append, w for overwrite)
 ###################################
 
-def initLogging(log_file, log_level, logging_mode):
-    print (log_file)
-    print (log_level)
-    print (log_file)
-    logging.basicConfig(filename=log_file,
+def initLogging(log_file, log_dir, log_level, logging_mode):
+    logging.basicConfig(filename=log_dir+log_file,
                             filemode=logging_mode,
                             format='%(asctime)s,%(msecs)d %(name)s %(levelname)s %(message)s',
                             datefmt='%H:%M:%S',
                             level=log_level)
-
-    print ('test')
     logging.info("_______________________NEW RUN_______________________")
     logging.info("Logger Initalized at level %s", log_level)

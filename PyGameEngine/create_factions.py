@@ -8,25 +8,21 @@ from units import *
 from asset_load import *
 from unit_stat_values import *
 import configparser
+from logger import logging
 
 ##########################################
 # creates a faction file
 # factino_name is the name of the faction
 ##########################################
 def create_faction(faction_name):
-#    file_name = faction_name+'.fac'
-#    file_path = os.path.join(Path(__file__).parent.resolve(), "faction", file_name)
-    
-    
-    file_name = faction_name+'.fac'
+    file_name = './factions/'+faction_name+'.fac'
     base_dir = Path(__file__).parent.resolve()
     file_path = base_dir / file_name
     if file_path.exists():
-        print('error')
-        # logging.info("error faction file for %s already exists", faction_name)
-        # logging.info("Need to impliment error handling base_dir")
+        logging.info("error faction file for %s already exists", faction_name)
+        logging.info("Need to impliment error handling base_dir")
     else:
-        # logging.info("creating faction file %s", faction_name)
+        logging.info("creating faction file %s", faction_name)
         faction_file = configparser.ConfigParser()
         faction_file.read(file_path)
         faction_file.add_section('faction_meta')
@@ -34,9 +30,9 @@ def create_faction(faction_name):
         faction_file.set('faction_meta', 'name', faction_name)
         faction_file.set('faction_meta', 'id', faction_id)
         faction_file.set('faction_meta', 'points', '1000')
-        with open(file_path, 'wb') as write_file:
+        with open(file_path, 'w') as write_file:
             faction_file.write(write_file)
-        # logging.info("Faction %s Created", faction_name)
+        logging.info("Faction %s Created", faction_name)
 
 ##########################################
 # creates a unit entry in a faction file
@@ -44,27 +40,26 @@ def create_faction(faction_name):
 # name is the name of the unit being created
 ##########################################
 def create_unit(faction_name, name):
-    file_name = faction_name+'.fac'
+    file_name = './factions/'+faction_name+'.fac'
     base_dir = Path(__file__).parent.resolve()
     file_path = base_dir / file_name
-    faction_file = configparser.ConfigParser()
-    faction_file.read(file_path)
+    parser = configparser.ConfigParser()
+    parser.read(file_path)
     if file_path.exists():
-        if faction_file.get(name, name).exists(): # check if the units section has been made
-            print('error')
-            # logging.info("error unit %s already exists", name)
-            # logging.info("Need to impliment error handling base_dir")
+        if parser.get(name, name).exists(): # check if the units section has been made
+            logging.info("error unit %s already exists", name)
+            logging.info("Need to impliment error handling base_dir")
         else:
-            faction_file.add_section(name)
-            faction_file.set(name, 'name', name)
+            parser.add_section(name)
+            parser.set(name, 'name', name)
             unit_id = uuid.uuid4().hex
-            faction_file.set(name, 'id', unit_id)
-            faction_file.set(name, 'point_alowance', '100')
-            with open(file_path, 'wb') as write_file:
-                faction_file.write(write_file)
-            # logging.info("Unit %s Created", name)
-    # else:
-    #     logging.info("Base faction doesn't exist")
+            parser.set(name, 'id', unit_id)
+            parser.set(name, 'point_alowance', '100')
+            with open(file_path, 'w') as write_file:
+                parser.write(write_file)
+            logging.info("Unit %s Created", name)
+    else:
+        logging.info("Base faction doesn't exist")
 
 ##########################################
 # edits a unit entry in a faction file
@@ -75,26 +70,26 @@ def create_unit(faction_name, name):
 # value='none' if aplicable is the value to set the tag to
 ##########################################
 def edit_unit(action, faction_name, name, tag, value='none'):
-    file_name = faction_name+'.fac'
+    file_name = './factions/'+faction_name+'.fac'
     base_dir = Path(__file__).parent.resolve()
     file_path = base_dir / file_name
-    faction_file = configparser.ConfigParser()
-    faction_file.read(file_path)
-    if faction_file.get(name, name).exists():
+    parser = configparser.ConfigParser()
+    parser.read(file_path)
+    if parser.get(name, name).exists():
         if action == 'remove':
-            config.remove_option(name, tag)
-            # logging.info("removed unit %s tag %s", name, tag)
+            parser.remove_option(name, tag)
+            logging.info("removed unit %s tag %s", name, tag)
         elif action == 'add':
-            faction_file.set(name, tag, value)
-            # logging.info("added unit %s tag %s", name, tag)
+            parser.set(name, tag, value)
+            logging.info("added unit %s tag %s", name, tag)
         elif action == 'edit':
-            faction_file.set(name, tag, value)
-            # logging.info("edited unit %s tag %s", name, tag)
-        with open(file_path, 'wb') as write_file:
-            faction_file.write(write_file)
-    # else:
-    #     logging.info("error unit %s doesn't exist", name)
-    #     logging.info("Need to impliment error handling base_dir")
+            parser.set(name, tag, value)
+            logging.info("edited unit %s tag %s", name, tag)
+        with open(file_path, 'w') as write_file:
+            parser.write(write_file)
+    else:
+        logging.info("error unit %s doesn't exist", name)
+        logging.info("Need to impliment error handling base_dir")
 
 #testing code need to remove once done
 create_faction('testfaction')

@@ -15,17 +15,20 @@ from logger import *
 from units import *
 from asset_load import *
 from event import *
+from init_dir import *
 
+init_dirs()
 initConfig() #read startup options from config file
-log_file=readConfig('logging', 'log_file', 'string')
-log_level=readConfig('logging', 'log_level', 'string')
-logging_mode=readConfig('logging', 'logging_mode', 'string')
-initLogging(log_file,log_level,logging_mode) #start the logger
+log_file=read_config('config', 'logging', 'log_file', 'string')
+log_dir=read_config('config', 'logging', 'log_dir', 'string')
+log_level=read_config('config', 'logging', 'log_level', 'string')
+logging_mode=read_config('config', 'logging', 'logging_mode', 'string')
+initLogging(log_file, log_dir, log_level,logging_mode) #start the logger
 initStatus = pygame.init() #start pygame modules
 logging.info('Game Starting with %i moduals Succeding and %i Failures', initStatus[0], initStatus[1])
 
-display_width = readConfig('graphics', 'display_width', 'int')
-display_height = readConfig('graphics', 'display_height', 'int')
+display_width = read_config('config', 'graphics', 'display_width', 'int')
+display_height = read_config('config', 'graphics', 'display_height', 'int')
 logging.info('Screen resolution set to %i x %i', display_width, display_height)
 
 game_display = pygame.display.set_mode((display_width, display_height))
