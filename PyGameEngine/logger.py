@@ -13,7 +13,8 @@ import logging
 ###################################
 
 def initLogging(log_file, log_dir, log_level, logging_mode):
-    logging.basicConfig(filename=log_dir+log_file,
+    # logging.basicConfig(filename=log_dir+log_file,
+    logging.basicConfig(filename=log_file,
                             filemode=logging_mode,
                             format='%(asctime)s,%(msecs)d %(name)s %(levelname)s %(message)s',
                             datefmt='%H:%M:%S',
