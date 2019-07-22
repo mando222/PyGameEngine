@@ -13,5 +13,5 @@ def make_dir(dir_name):
     try:
         os.makedirs(dir_name)
     except FileExistsError:
-        logging.error("Error createing directory %s", dir_name)
+        logging.info("Directory %s already exists", dir_name)
         pass

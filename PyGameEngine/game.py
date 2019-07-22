@@ -25,6 +25,7 @@ log_level=read_config('config', 'logging', 'log_level', 'string')
 logging_mode=read_config('config', 'logging', 'logging_mode', 'string')
 initLogging(log_file, log_dir, log_level,logging_mode) #start the logger
 initStatus = pygame.init() #start pygame modules
+key_bindings = init_key_bindings()
 logging.info('Game Starting with %i moduals Succeding and %i Failures', initStatus[0], initStatus[1])
 
 display_width = read_config('config', 'graphics', 'display_width', 'int')
@@ -49,13 +50,12 @@ def render_units(unit_list):
         game_display.blit(background, unit.pos, unit.pos)
     for unit in unit_list:
         if unit.state== 'alive':
-            unit.move()
             game_display.blit(unit.image, unit.pos)
     pygame.display.update()
     pygame.time.delay(100)
     
 while running:
     logging.debug("tick")
-    event_handler(unit_list)
+    event_handler(unit_list, key_bindings)
     render_units(unit_list)
     clock.tick(144)
