@@ -12,10 +12,9 @@ from logger import logging
 ##########################################
 # addes a unit to the unit_list array
 ########################################## 
-def add_units(unit_list, name, faction='default', height=1, speed=1, state='alive'):
+def add_units(unit_list, name, faction='default'):
     unit_image = load_image(name)
-    unit_instanceID = uuid.uuid4().hex
-    new_unit = unitObject(unit_instanceID, name, faction, unit_image, height, speed, 'alive')
+    new_unit = unitObject(name, faction, unit_image)
     unit_list.append(new_unit)
     return unit_list
 
@@ -34,7 +33,5 @@ def move_units(unit_list, direction, unit_instanceID):
 ########################################## 
 def delete_units(unit_list, unit_instanceID):
     for unit in unit_list:
-        if unit.instanceID == unit_instanceID:
-            unit.state = 'dead'   
-            logging.info('Unit %s dead', unit_instanceID)
-    return unit_list
+        if unit.instanceID == unit_instanceID: 
+                unit.destroy()
