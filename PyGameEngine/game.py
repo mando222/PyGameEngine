@@ -25,18 +25,18 @@ from key_bindings import key_bindings
 class game_engine:
     def __init__(self):
         init_dirs()
-        initConfig() #read startup options from config file
-        self.log_file=read_config('config', 'logging', 'log_file', 'string')
-        self.log_dir=read_config('config', 'logging', 'log_dir', 'string')
-        self.log_level=read_config('config', 'logging', 'log_level', 'string')
-        self.logging_mode=read_config('config', 'logging', 'logging_mode', 'string')
+        self.running_config = config_reader() #read startup options from config file
+        self.log_file = self.running_config.read_config('logging', 'log_file', 'string')
+        self.log_dir = self.running_config.read_config('logging', 'log_dir', 'string')
+        self.log_level = self.running_config.read_config('logging', 'log_level', 'string')
+        self.logging_mode = self.running_config.read_config('logging', 'logging_mode', 'string')
         initLogging(self.log_file, self.log_dir, self.log_level,self.logging_mode) #start the logger
         self.initStatus = pygame.init() #start pygame modules
         self.key_bindings = key_bindings()
         logging.info('Game Starting with %i moduals Succeding and %i Failures', self.initStatus[0], self.initStatus[1])
 
-        self.display_width = read_config('config', 'graphics', 'display_width', 'int')
-        self.display_height = read_config('config', 'graphics', 'display_height', 'int')
+        self.display_width = self.running_config.read_config('graphics', 'display_width', 'int')
+        self.display_height = self.running_config.read_config('graphics', 'display_height', 'int')
         logging.info('Screen resolution set to %i x %i', self.display_width, self.display_height)
 
         self.game_display = pygame.display.set_mode((self.display_width, self.display_height))
