@@ -21,6 +21,9 @@ import select
 import random
 import time
 from key_bindings import key_bindings
+from unit_operations import *
+from key_actions import *
+
 
 class game_engine:
     def __init__(self):
@@ -65,9 +68,19 @@ class game_engine:
         pygame.display.update()
         pygame.time.delay(100)
     
+
+    def event_handler(self):
+        for event in pygame.event.get():
+            logging.debug(event)        
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+            elif event.type == pygame.KEYDOWN:
+                key_event(event.key, self.unit_list, self.key_bindings)
+
     def run(self):
             logging.debug("tick")
-            event_handler(self.unit_list, self.key_bindings)
+            self.event_handler()
             self.render_units()
             self.clock.tick(144)
 
