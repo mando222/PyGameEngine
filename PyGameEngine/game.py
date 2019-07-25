@@ -14,7 +14,6 @@ from config_reader import *
 from logger import *
 from units import *
 from asset_load import *
-from event import *
 from init_dir import *
 import socket
 import select
