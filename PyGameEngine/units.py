@@ -3,14 +3,14 @@ from logger import logging
 import uuid
 
 class unitObject:
-    def __init__(self, name, faction, image):
+    def __init__(self, name, faction, image, height=1, speed=1):
         self.instanceID = uuid.uuid4().hex
         self.name = name
         self.faction = faction
         self.image = image
-        self.speed = 1
+        self.speed = speed
         self.state = 'alive'
-        self.pos = image.get_rect().move(0, 1)
+        self.pos = image.get_rect().move(0, height)
     def move(self, direction):
         if direction == 'N':
             self.pos = self.pos.move(0, -self.speed)

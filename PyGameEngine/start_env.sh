@@ -14,7 +14,7 @@ while test $# -gt 0; do
                         exit 0
                         ;;
                 -a|--activate)
-                    source venv/bin/activate
+                    source ./venv/bin/activate
                     ;;
                 -i|--install)  
                     pip install virtualenv

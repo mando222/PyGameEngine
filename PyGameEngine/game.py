@@ -16,46 +16,61 @@ from units import *
 from asset_load import *
 from event import *
 from init_dir import *
+import socket
+import select
+import random
+import time
+from key_bindings import key_bindings
 
-init_dirs()
-initConfig() #read startup options from config file
-log_file=read_config('config', 'logging', 'log_file', 'string')
-log_dir=read_config('config', 'logging', 'log_dir', 'string')
-log_level=read_config('config', 'logging', 'log_level', 'string')
-logging_mode=read_config('config', 'logging', 'logging_mode', 'string')
-initLogging(log_file, log_dir, log_level,logging_mode) #start the logger
-initStatus = pygame.init() #start pygame modules
-key_bindings = init_key_bindings()
-logging.info('Game Starting with %i moduals Succeding and %i Failures', initStatus[0], initStatus[1])
+class game_engine:
+    def __init__(self):
+        init_dirs()
+        initConfig() #read startup options from config file
+        self.log_file=read_config('config', 'logging', 'log_file', 'string')
+        self.log_dir=read_config('config', 'logging', 'log_dir', 'string')
+        self.log_level=read_config('config', 'logging', 'log_level', 'string')
+        self.logging_mode=read_config('config', 'logging', 'logging_mode', 'string')
+        initLogging(self.log_file, self.log_dir, self.log_level,self.logging_mode) #start the logger
+        self.initStatus = pygame.init() #start pygame modules
+        self.key_bindings = key_bindings()
+        logging.info('Game Starting with %i moduals Succeding and %i Failures', self.initStatus[0], self.initStatus[1])
 
-display_width = read_config('config', 'graphics', 'display_width', 'int')
-display_height = read_config('config', 'graphics', 'display_height', 'int')
-logging.info('Screen resolution set to %i x %i', display_width, display_height)
+        self.display_width = read_config('config', 'graphics', 'display_width', 'int')
+        self.display_height = read_config('config', 'graphics', 'display_height', 'int')
+        logging.info('Screen resolution set to %i x %i', self.display_width, self.display_height)
 
-game_display = pygame.display.set_mode((display_width, display_height))
-pygame.display.set_caption('PyGameEngine')
-logging.info('Game Has Started Without Errors')
-clock = pygame.time.Clock()
+        self.game_display = pygame.display.set_mode((self.display_width, self.display_height))
+        pygame.display.set_caption('PyGameEngine')
+        logging.info('Game Has Started Without Errors')
+        self.clock = pygame.time.Clock()
 
-#Setup background
-background = load_image('whitebackground')
-game_display.blit(background, (0, 0))
+        #Networking support 
 
-#Setup global arrays
-unit_list = []
-running = True
-   
-def render_units(unit_list):    
-    for unit in unit_list:
-        game_display.blit(background, unit.pos, unit.pos)
-    for unit in unit_list:
-        if unit.state== 'alive':
-            game_display.blit(unit.image, unit.pos)
-    pygame.display.update()
-    pygame.time.delay(100)
+
+
+        #Setup background
+        self.background = load_image('whitebackground')
+        self.game_display.blit(self.background, (0, 0))
+
+        #Setup global arrays
+        self.unit_list = []
+        self.running = True
+        
+    def render_units(self):    
+        for unit in self.unit_list:
+            self.game_display.blit(self.background, unit.pos, unit.pos)
+        for unit in self.unit_list:
+            if unit.state== 'alive':
+                self.game_display.blit(unit.image, unit.pos)
+        pygame.display.update()
+        pygame.time.delay(100)
     
-while running:
-    logging.debug("tick")
-    event_handler(unit_list, key_bindings)
-    render_units(unit_list)
-    clock.tick(144)
+    def run(self):
+        while self.running:
+            logging.debug("tick")
+            event_handler(self.unit_list, self.key_bindings)
+            self.render_units()
+            self.clock.tick(144)
+
+game_instance = game_engine()
+game_instance.run
