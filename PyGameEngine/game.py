@@ -66,11 +66,12 @@ class game_engine:
         pygame.time.delay(100)
     
     def run(self):
-        while self.running:
             logging.debug("tick")
             event_handler(self.unit_list, self.key_bindings)
             self.render_units()
             self.clock.tick(144)
 
+
 game_instance = game_engine()
-game_instance.run
+while game_instance.running:
+    game_instance.run()
