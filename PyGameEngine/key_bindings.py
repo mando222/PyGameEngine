@@ -18,7 +18,7 @@ class key_bindings:
             self.CAMERA_DOWN = pygame.K_DOWN
             self.CAMERA_RIGHT = pygame.K_RIGHT
             self.CAMERA_LEFT = pygame.K_LEFT
-            # self.TEST_SPAWN_RIGHT = pygame.K_f
+            self.TEST_SPAWN_RIGHT = pygame.K_f
             self.MENU = pygame.K_ESCAPE
 
             parser = configparser.ConfigParser()
@@ -32,7 +32,7 @@ class key_bindings:
             # self.CAMERA_DOWN = keys_map.find_key(parser.get('key_bindings', 'camera_down'))
             # self.CAMERA_RIGHT = keys_map.find_key(parser.get('key_bindings', 'camera_right'))
             # self.CAMERA_LEFT = keys_map.find_key(parser.get('key_bindings', 'camera_left'))
-            self.TEST_SPAWN_RIGHT = keys_map.find_key(parser.get('key_bindings', 'test_spawn_right'))
+            # self.TEST_SPAWN_RIGHT = keys_map.find_key(parser.get('key_bindings', 'test_spawn_right'))
             # self.MENU = keys_map.find_key(parser.get('key_bindings', 'menu'))
         else:
             self.create_config_file()
