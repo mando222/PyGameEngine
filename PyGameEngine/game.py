@@ -76,6 +76,13 @@ class game_engine:
                 quit()
             elif event.type == pygame.KEYDOWN:
                 key_event(event.key, self.unit_list, self.key_bindings)
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                if event.button == 1:
+                    print('mouseclick', event.button)
+                elif event.button == 2:
+                    print('mouseclick', event.button)
+                elif event.button == 3:
+                    print('mouseclick', event.button)
 
     def run(self):
             logging.debug("tick")
