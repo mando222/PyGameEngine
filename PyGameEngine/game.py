@@ -73,6 +73,7 @@ class game_engine:
         elif self.game_state == 'play_menu':
             print('need to impliment')
         elif self.game_state == 'in_game':
+            self.game_display.blit(self.menu_background, (0, 0))
             for unit in self.unit_list:
                 self.game_display.blit(self.background, unit.pos, unit.pos)
             for unit in self.unit_list:
@@ -101,6 +102,7 @@ class game_engine:
                             print('clicked button', button.name)
                             if button.name == 'find_game_button':
                                 self.game_state = 'in_game'
+                                self.game_display.blit(self.menu_background, (0, 0))
                             elif button.name == 'settings_button':
                                 print('need to implement settings')
                             elif button.name == 'exit_button':
@@ -116,6 +118,7 @@ class game_engine:
                     game_state = key_event(event.key, self.unit_list, self.key_bindings)
                     if not game_state == 0:
                         self.game_state = game_state
+                        self.game_display.blit(self.menu_background, (0, 0))
                 elif event.type == pygame.MOUSEBUTTONDOWN:
                     if event.button == 1: # Left click
                         clicked_units = [unit for unit in self.unit_list if unit.rect.collidepoint(event.pos)]
