@@ -12,7 +12,7 @@ def init_key_bindings():
 
 def key_event(key, unit_list, key_bindings):
         if (key == key_bindings.MENU):
-            print ('need to implement a menu')
+            return 'main_menu'
         elif (key == key_bindings.TEST_SPAWN_RIGHT):
             unit_list = add_units(unit_list, 'unit')
         elif (key == key_bindings.CAMERA_DOWN):
@@ -25,3 +25,4 @@ def key_event(key, unit_list, key_bindings):
             move_units(unit_list, 'W', unit_list[0].instanceID)
         elif (key == key_bindings.DELETE or key_bindings.ALT_DELETE):
             delete_units(unit_list, unit_list[0].instanceID)
+        return 0

@@ -11,6 +11,15 @@ class unitObject:
         self.speed = speed
         self.state = 'alive'
         self.pos = image.get_rect().move(0, height)
+
+
+        self.rect = image.get_rect()
+        self.radius = 8
+        self.centerx = 4
+
+
+
+
     def move(self, direction):
         if direction == 'N':
             self.pos = self.pos.move(0, -self.speed)
