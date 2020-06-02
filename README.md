@@ -11,5 +11,5 @@ pip3 install requirements.txt
 To run the game engine use the following commands
 ```
 cd PyGameEngine
-python game.py
+python3 game.py
 ```
